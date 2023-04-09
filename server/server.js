@@ -7,11 +7,7 @@ const { typeDefs, resolvers } = require('./schemas');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  context: authMiddleware,
-});
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -24,6 +20,11 @@ if (process.env.NODE_ENV === 'production') {
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    context: authMiddleware,
+  });
   await server.start();
   server.applyMiddleware({ app });
   
