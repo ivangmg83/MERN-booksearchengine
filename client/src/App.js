@@ -5,6 +5,7 @@ import SavedBooks from './pages/SavedBooks';
 import Navbar from './components/Navbar';
 import {
   ApolloClient,
+  ApolloProvider,
   InMemoryCache,
   createHttpLink,
 } from '@apollo/client';
